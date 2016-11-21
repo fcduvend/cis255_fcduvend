@@ -1,0 +1,53 @@
+<html>
+  <script>
+    function Run() {
+      var retval = "IF/ELSE<br/>";
+      var bln1 = bln2 = true;
+      if(bln1 === bln2)
+        retval += "bln1: " + bln1 + " bln2: " + bln2 + " (bln1 === bln2) = " + (bln1 === bln2);
+      else
+        retval += "nope...";
+
+
+      retval += "<hr/>SWITCH NUMS</br>";
+
+      var num = 2;
+
+      switch(num) {
+        case 1:
+          retval += "one";
+          break;
+        case 2:
+          retval += "two";
+          break;
+        default:
+          retval += "default";
+          break;
+      }
+
+      retval += "<hr/>SWITCH STR</br>";
+
+      var str = "aoeu";
+      
+      switch(str) {
+        case "htns":
+          retval += "htns";
+          break;
+        case "aoeu":
+          retval += "aoeu";
+          break;
+        default:
+          retval += "default";
+          break;
+      }
+
+      retval += "<br/>";
+
+      document.getElementById("log").innerHTML = "<p>" + retval + "</p>"
+    }
+  </script>
+
+  <body onLoad="Run();">
+    <div id="log"></div>
+  </body>
+</html>

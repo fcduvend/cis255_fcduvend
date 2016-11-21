@@ -1,0 +1,92 @@
+  <!--
+  Frank Duvendack
+
+-->
+
+<html>
+  <body>
+    <input type="text" id="txtCourseNum"/>
+    <select id="slctCourses"></select>
+    <input type="button" id="btnSearch" value="Search"/>
+    <p id="pHits"></p>
+    <p id="pLog"></p>
+  </body>
+
+
+  <script>
+    var apidata = new Object();
+
+    function appendText(str) {
+      document.getElementById("pLog").innerHTML += str + "<br/>";
+    }
+  
+    (function getjson(storage) {
+      var xmlhttp = new XMLHttpRequest();
+      var url = "https://api.svsu.edu/courses?prefix=CIS";
+
+      xmlhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          var data = JSON.parse(this.responseText);
+          populateSelect(data);
+          storage = data;
+        }
+      }
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    })(apidata);
+
+    document.getElementById("pLog").innerHTML = "";
+
+    alert(typeof(apidata));
+
+    function populateSelect(data) {
+      if(document.getElementById("slctCourses").length == 0)
+      {
+        data.courses.forEach(function(innerdata) {
+          var inselect = false;
+          for(var i = 0; i < document.getElementById("slctCourses").length; i++) {
+            if(document.getElementById("slctCourses").options[i].text == innerdata.courseNumber) {
+              inselect = true;
+            }
+          }
+
+          if(!inselect) {
+            var newelement = document.createElement("option");
+            newelement.text = innerdata.courseNumber;
+            document.getElementById("slctCourses").add(newelement);
+          }
+        });
+      }
+    }
+
+    document.getElementById("btnSearch").onclick = function() {
+      //var apidata = getJson();
+      alert(apidata.courses);
+      if(apidata.length > 0) {
+        var coursenum = parseInt(document.getElementById("slctCourses").value);
+        alert(coursenum);
+        var matches = 0;
+        data.courses.forEach(function(innerdata) {
+          if(parseInt(innerdata.courseNumber) === coursenum) {
+            var coursestr = innerdata.courseNumber + 
+              "<br/>Credits: " + innerdata.credit + 
+              "<br/>Description: " + innerdata.description + 
+              "<br/>Instructors: ";
+
+            innerdata.instructors.forEach(function(instructors) {
+              coursestr += "<br/>" + instructors.name;
+            });
+
+            appendText(coursestr + "<br/>");
+            matches++;
+          }
+        });
+        document.getElementById("pHits").innerHTML = matches + " hits.";
+      }
+    }
+    </script>
+
+  <style>
+
+  </style>
+</html>

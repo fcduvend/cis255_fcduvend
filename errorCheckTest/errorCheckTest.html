@@ -1,0 +1,42 @@
+<html>
+  <body>
+    <label>Enter a number:</label>
+    <input type="text" id="txt1" onkeyup="isNumber();"/>
+    <br/>
+    <p id="out1"></p>
+    <p id="out2"></p>
+  </body>
+
+
+  <script>
+    function testFunc() {
+      return "in testFunc";
+    }
+
+    function isNumber() {
+      var val = document.getElementById("txt1").value;
+      if(!isNaN(val) && val != "") {
+        with(document.getElementById("out1")) {
+          innerHTML = "Number";
+          style.color = "green";
+        }
+      } else {
+        with(document.getElementById("out1")) {
+          innerHTML = "Not number";
+          style.color = "red";
+        }
+      }
+
+      try {
+        document.getElementById("out2").innerHTML = testFunc2();
+      } catch(err) {
+        document.getElementById("out2").innerHTML = "uh-oh<br/>" + err;
+      }
+    }
+  </script>
+
+
+  <style>
+
+  </style>
+</html>

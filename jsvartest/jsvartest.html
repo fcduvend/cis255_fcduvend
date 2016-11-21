@@ -1,0 +1,55 @@
+<html>
+  <body>
+
+  </body>
+
+
+  <script>
+
+    document.write("Scope test:<br/>");
+    var one = "&#19968;";
+    var two = "&#20108;";
+    var three = "&#19977;";
+
+    (function() {
+      var two = 2, one = 1;
+      document.write(one + " " + two + " " + three);
+    })();
+
+    document.write("<br/>" + one + " " + two + " " + three + "<br/>");
+
+    (function() {
+      var hello = function(val) {
+        var str = val + "<br/>"
+        document.write(str);
+      }
+
+      var goodbye = function(val) {
+        var str = val + "<br/>"
+        document.write(str);
+      }
+
+      document.write("Hello:<br/>");
+      hello("Annyeong");
+      hello("Bonjour");
+      hello("Hello");
+      hello("Hola");
+      hello("Konnichiwa");
+
+      document.write("<br/>Goodbye:<br/>");
+
+      goodbye("Annyeong");
+      goodbye("Au Revoir");
+      goodbye("Goodbye");
+      goodbye("Adios");
+      goodbye("Sayounara");
+      
+    })();
+
+  </script>
+
+
+  <style>
+
+  </style>
+</html>

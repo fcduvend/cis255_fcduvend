@@ -1,0 +1,43 @@
+<!--
+  Frank Duvendack
+  2016.10.19
+  formtest2
+-->
+
+<html>
+  <body>
+    <input type="text" name="username" id="username"/><br/>
+    <input type="password" name="password" id="password"/><br/>
+    <input type="button" id="btnTest" value="Test Button"/>
+    <p id="log"></p>
+  </body>
+
+
+  <script>
+    function log(str) {
+      document.getElementById("log").innerHTML += str + "<br/>";
+    }
+    
+    with(document.getElementById("btnTest")) {
+      onclick = function() {
+        var req = new XMLHttpRequest();
+
+        req.onload = function() {
+          log(req.responseText);
+        };
+
+        req.open("get", "login.php" + , true);
+        req.send();
+      };
+
+      onmouseover = function() {
+        log("Mouseover btnTest...");
+      };
+    }
+  </script>
+
+
+  <style>
+
+  </style>
+</html>

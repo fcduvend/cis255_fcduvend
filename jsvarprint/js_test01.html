@@ -1,0 +1,28 @@
+<html>
+  <script>
+    function run() {
+      var retval = "";
+
+      var num = 5;
+      var str = "yo";
+      var bool = true;
+      var nul = null;
+      var und = undefined;
+      var $_aoeu1234$ = "aoeu";
+
+      retval = typeof(num) + " num = " + num + 
+        "<br/>" + typeof(str) + " str = " + str +
+        "<br/>" + typeof(bool) + " bool = " + bool + 
+        "<br/>" + typeof(nul) + " nul = " + nul +
+        "<br/>" + typeof(und) + " und = " + und +
+        "<br/>" + typeof($_aoeu1234$) + " $_aoeu1234$ = " + $_aoeu1234$;
+
+      document.getElementById("log").innerHTML += "<p>" + retval + "</p>";
+    }
+  </script>
+
+  <body>
+    <input type="button" onClick="run();" value="Run"/>
+    <div id="log"></div>
+  </body>
+</html>

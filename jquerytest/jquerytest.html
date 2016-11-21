@@ -1,0 +1,135 @@
+<!--
+  Frank Duvendack
+  2016.11.07
+  jquerytest.html
+  
+  Manipulate paragraphs, caluclate area, and convert temperature using
+  JQuery.
+-->
+
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>JQuery Test</title>
+  </head>
+  <body>
+    <h1>P manipulation test</h1>
+    <p>Double or single click</p>
+    <p class="pBlue">Hello</p>
+    <p>Hello</p>
+    <p class="pBlue">Hello</p>
+    <p>Hello</p>
+    <p class="pBlue">Hello</p>
+
+    <hr/>
+
+    <h1>Calculate area test</h1>
+    <span>W: </span>
+    <input class="area" type="text" id="txtWidth"/>
+    <span>H: </span>
+    <input class="area" type="text" id="txtHeight"/>
+    <p id="pArea"></p>
+
+    <hr/>
+
+    <h1>Temperature conversion test</h1>
+    <span>C: </span>
+    <input class="temp" type="text" id="txtC"/>
+    <span>F: </span>
+    <input class="temp" type="text" id="txtF"/>
+
+    <hr/>
+
+    <h1>Fade test</h1>
+    <p class="click" id="pPar">This is a paragraph</p>
+    <div class="click" id="dDiv">
+      <p class="click" id="pDiv">This is a div</p>
+    </div>
+
+  </body>
+
+
+  <script>
+    $(document).ready(function() {
+
+      //P MANIPULATION TEST
+      $("p")
+        .on("click", function() {
+          $(this).css("color", $(this).css("color") == "rgb(255, 0, 0)" ? "black" : "red");
+        })
+        .on("dblclick", function() {
+          $(".pBlue").css("color", "blue");
+        })
+        .on("mouseenter", function() {
+          $(this).css("background-color", "aqua");
+        })
+        .on("mouseleave", function() {
+          $(this).css("background-color", "white");
+        });
+
+      //AREA TEST
+      $("input.area")
+        .on("keyup", function() {
+          $("#pArea").text(parseInt($("#txtWidth").val()) * parseInt($("#txtHeight").val()));
+        });
+
+      //TEMPERATURE CONVERSION TEST
+      $("input.temp")
+        .on("keyup", function(sender) {
+          //get float vals of textboxes
+          var c = parseFloat($("#txtC").val());
+          var f = parseFloat($("#txtF").val());
+
+          //calculate c or f
+          if(sender.target.id == "txtC")
+            $("#txtF").val(c * 1.8 + 32.0);  
+          else
+            $("#txtC").val((f - 32.0) / 1.8);
+
+          //assign a black to red color fade based on c
+          c = parseFloat($("#txtC").val());
+          if (c < 0.0)
+            $("input.temp").css("color", "black");
+          else if(c < 10.0)
+            $("input.temp").css("color", "blue");
+          else if(c < 40.0)
+            $("input.temp").css("color", "orange");
+          else
+            $("input.temp").css("color", "red");
+        });
+
+      //FADE TEST
+      $("#pPar")
+        .on("click", function() {
+          $("#pDiv").text("noooooo");
+          $("#dDiv").fadeToggle(1000, function() { $("#pDiv").text("This is a div"); }); 
+          
+        });
+
+      $("#dDiv")
+        .on("click", function() {
+          $("#pPar").text("noooooo");
+          $("#pPar").fadeToggle(1000, function() { $("#pPar").text("This is a paragraph"); }); 
+        });
+    });
+  </script>
+
+
+  <style>
+    p {
+      font-weight: bold;
+      font-family: arial;
+      font-size: 16pt;
+    }
+
+    h1 {
+      color: green;
+      font-weight: bold;
+      font-family: arial;
+    }
+    
+    span {
+      font-family: arial;
+    }
+  </style>
+</html>

@@ -1,0 +1,89 @@
+<!--
+  Frank Duvendack
+  DOM TEST
+
+  2016.10.26
+
+  Test writing to DOM
+    -Modify style of element with js
+    -Append li element to ul and apply stripes
+-->
+
+<html>
+  <body id="bd">
+    <!--BEGIN JS STYLE TEST-->
+    <input type="button" id="btnSetStyle" value="Set Style"/>
+    <br/>
+    <p id="pTest" style="color: white">hello</p>
+
+    <!--END JS STYLE TEST-->
+
+    <hr/>
+
+    <!--BEGIN APPENDCHILD TEST-->
+    <input type="button" id="btnAppendUL" value="Append UL"/>
+    <input type="button" id="btnRemoveLast" value="Remove Last"/>
+    <label id="lblCount" style="color: white">COUNT: 0</label>
+    <br/>
+    <input type="input" id="txtAppendUL"/>
+    <br/>
+    <ul id="ulappend"></ul>
+    <!--END APPENDCHILD TEST-->
+
+  </body>
+
+
+  <script>
+    /*BEGIN JS STYLE TEST*/
+    document.getElementById("pTest").style.fontSize = "20pt"
+    document.getElementById("btnSetStyle").onclick = function() {
+      var ptest = document.getElementById("pTest");
+      ptest.style.color = "blue";
+      ptest.style.fontSize = parseInt(ptest.style.fontSize.substr(0, ptest.style.fontSize.length - 2)) + 1 + "pt";
+      ptest.style.fontFamily = "Arial";
+      ptest.style.fontWeight = "bolder";
+    };
+    /*END JS STYLE TEST*/
+
+    /*BEGIN APPENDCHILD TEST*/
+    function updateCount() {
+      document.getElementById("lblCount").innerHTML = "COUNT: " + document.getElementById("ulappend").childNodes.length;
+    }
+
+    function applyStripes() {
+      var ulappend = document.getElementById("ulappend");
+      var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+      for(var i = 0; i < ulappend.childNodes.length; i++)
+        ulappend.childNodes[i].style.color = colors[i % colors.length];
+    }
+    
+    document.getElementById("btnAppendUL").onclick = function() {
+      var ulappend = document.getElementById("ulappend");
+      var txtAppendUL = document.getElementById("txtAppendUL");
+      if(txtAppendUL.value != "") {
+        var newElem = document.createElement("li");
+        newElem.innerHTML = txtAppendUL.value;
+        ulappend.appendChild(newElem);
+        updateCount();
+        applyStripes();
+      }
+    };
+
+    document.getElementById("btnRemoveLast").onclick = function() {
+      var ulappend = document.getElementById("ulappend");
+      var ulchildren = ulappend.childNodes;
+      if(ulchildren.length > 0)
+        ulappend.removeChild(ulchildren[ulchildren.length - 1]);
+
+      updateCount();
+      applyStripes();
+    };
+    /*END APPENDCHILD TEST*/
+  </script>
+
+  <style>
+    body {
+      background: black;
+    }
+  </style>
+</html>

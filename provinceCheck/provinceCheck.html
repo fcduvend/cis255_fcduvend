@@ -1,0 +1,71 @@
+<!--
+  Frank Duvendack
+  Canadian Province Translator
+  2016.10.17
+
+  Convert a Canadian Province abbreviation (ex: AB, ON) to it's full name (ex: Alberta, Ontario)
+-->
+
+<html>
+  <body onload="checkProv();">
+    <label>Enter the abbreviation of a province of Canada: </label>
+    <input type="text" id="txtProv" onkeyup="checkProv();" style="text-transform: uppercase"/>
+    <p id="pValid"></p>
+  </body>
+
+
+  <script>
+
+    //update pValid with the name of the province and set color to green
+    function update_pValid(provname, provid) {
+      if(typeof(provname) == "string" && typeof(provid) == "string") {
+        with(document.getElementById("pValid")) {
+          innerHTML = provname + " is abbreviated " + provid;
+          style.color = "green";
+        }
+      }
+    }
+
+    //validate user input, translate provice abbr to province name, and call update_pValid
+    function checkProv() {
+      //get input, convert to string, and convert to uppercase
+      var val = document.getElementById("txtProv").value.toString().toUpperCase();
+
+      //2d array holding the province abbrv and the province name
+      var provinces = [["AB", "Alberta"],
+                       ["BC", "British Columbia"],
+                       ["MB", "Manitoba"],
+                       ["NB", "New Brunswick"],
+                       ["NL", "Newfoundland and Labrador"],
+                       ["NS", "Northwest Territories"],
+                       ["NT", "Nova Scotia"],
+                       ["NU", "Nunavut"],
+                       ["ON", "Ontario"],
+                       ["PE", "Prince Edward Island"],
+                       ["QC", "Quebec"],
+                       ["SK", "Saskatchewan"],
+                       ["YT", "Yukon"]];
+
+
+      //validate input
+      var valid = false;
+      for(var i = 0; i < provinces.length && !valid; i++) {
+        if(val === provinces[i][0]) {
+          update_pValid(provinces[i][1], provinces[i][0]);
+          valid = true;
+        }
+      }
+
+      //set invalid if invalid
+      if(!valid) {
+        with(document.getElementById("pValid")) {
+          innerHTML = "That is not valid";
+          style.color = "red";
+        }
+      }
+
+      //set focus on txtProv
+      document.getElementById("txtProv").focus();
+    }
+  </script>
+</html>

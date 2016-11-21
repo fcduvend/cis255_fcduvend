@@ -1,0 +1,117 @@
+{
+    "courses": [
+        {
+            "academicLevel": "UG",
+            "capacity": "30",
+            "comments": [],
+            "courseNumber": "255",
+            "credit": "4",
+            "description": "This course focuses on web design and the client side of web application development. Topics include XHTML, Cascading Style Sheets (CSS), the Document Object Model, creating dynamic content and architecture, and building/deploying web pages and web sites. A large portion of the class is spent on examining the ECMA/JavaScript client side scripting language. Current topics of interest such as Web 2.0 and AJAX are explored. An introduction to using both commercial and open source web development tools is also provided.",
+            "instructors": [
+                {
+                    "name": "G. Corser",
+                    "username": "gpcorser"
+                }
+            ],
+            "lineNumber": "0482",
+            "location": "UC",
+            "meetingTimes": [
+                {
+                    "building": "SE",
+                    "days": "M",
+                    "endTime": "02:20 PM",
+                    "instructor": "gpcorser",
+                    "method": "LEC",
+                    "room": "135",
+                    "startTime": "12:30 PM"
+                },
+                {
+                    "building": "W",
+                    "days": "W",
+                    "endTime": "02:20 PM",
+                    "method": "LEC",
+                    "room": "226",
+                    "startTime": "12:30 PM"
+                },
+                {
+                    "building": "SE",
+                    "days": "M",
+                    "endTime": "02:20 PM",
+                    "method": "FNL",
+                    "room": "135",
+                    "startTime": "12:30 PM"
+                }
+            ],
+            "prefix": "CIS",
+            "prerequisites": "CS 116 (Previous, Required)  ",
+            "seatsAvailable": "3",
+            "section": "01",
+            "status": "Open",
+            "term": "16/FA",
+            "title": "Client Side Web Appl Devel"
+        },
+        {
+            "academicLevel": "UG",
+            "capacity": "30",
+            "comments": [],
+            "courseNumber": "255",
+            "credit": "4",
+            "description": "This course focuses on web design and the client side of web application development. Topics include XHTML, Cascading Style Sheets (CSS), the Document Object Model, creating dynamic content and architecture, and building/deploying web pages and web sites. A large portion of the class is spent on examining the ECMA/JavaScript client side scripting language. Current topics of interest such as Web 2.0 and AJAX are explored. An introduction to using both commercial and open source web development tools is also provided.",
+            "instructors": [
+                {
+                    "name": "G. Corser",
+                    "username": "gpcorser"
+                }
+            ],
+            "lineNumber": "0050",
+            "location": "UC",
+            "meetingTimes": [
+                {
+                    "building": "SE",
+                    "days": "TR",
+                    "endTime": "12:10 PM",
+                    "instructor": "gpcorser",
+                    "method": "LEC",
+                    "room": "135",
+                    "startTime": "08:00 AM"
+                }
+            ],
+            "prefix": "CIS",
+            "prerequisites": "CS 116 (Previous, Required)  ",
+            "seatsAvailable": "10",
+            "section": "11",
+            "status": "Open",
+            "term": "16/SP",
+            "title": "Client Side Web Appl Devel"
+        },
+        {
+            "academicLevel": "UG",
+            "capacity": "30",
+            "comments": [],
+            "courseNumber": "255",
+            "credit": "4",
+            "description": "This course focuses on web design and the client side of web application development. Topics include XHTML, Cascading Style Sheets (CSS), the Document Object Model, creating dynamic content and architecture, and building/deploying web pages and web sites. A large portion of the class is spent on examining the ECMA/JavaScript client side scripting language. Current topics of interest such as Web 2.0 and AJAX are explored. An introduction to using both commercial and open source web development tools is also provided.",
+            "instructors": [
+                {
+                    "name": "G. Corser",
+                    "username": "gpcorser"
+                }
+            ],
+            "lineNumber": "0483",
+            "location": "ONL",
+            "meetingTimes": [
+                {
+                    "instructor": "gpcorser",
+                    "method": "ONL"
+                }
+            ],
+            "prefix": "CIS",
+            "prerequisites": "CS 116 (Previous, Required)  ",
+            "seatsAvailable": "16",
+            "section": "90",
+            "status": "Open",
+            "term": "16/FA",
+            "title": "Client Side Web Appl Devel"
+        }
+    ]
+}

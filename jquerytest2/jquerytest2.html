@@ -1,0 +1,45 @@
+<!--
+  Frank Duvendack
+
+-->
+
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>JQuery Test 2</title>
+  </head>
+
+
+  <body>
+    <input type="button" id="btnGetText" value="Get loremipsum.txt text"/>
+    <input type="button" id="btnGetCourses" value="Get courses"/>
+    <div id="div1">
+      <h2>JQuery test 2</h2>
+      <p id="pData"></p>
+    </div>
+  </body>
+
+
+  <script>
+    $(document).ready(function() {
+      $("#btnGetText").click(function(){
+        $("#div1").load("loremipsum.txt");
+      });
+
+      $("#btnGetCourses").click(function(){
+        $.get("https://api.svsu.edu/courses?prefix=CIS&courseNumber=255", function(data) {
+          var aggr = "";
+          data.courses.forEach(function(a) {
+            aggr += a.prefix + a.courseNumber + " &bull; " + a.status + " &bull; " + a.title + "<br/>";
+          });
+          $("#pData").html(aggr);
+        });
+      });
+    });
+  </script>
+
+
+  <style>
+
+  </style>
+</html>

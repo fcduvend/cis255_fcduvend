@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+                           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="cards.css"/>
+  </head>
+
+<body>
+  <div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box">
+      <div class="titlebar">
+        <div class="card-head" style="background: #F44336">
+          <p class="card-head-title">
+            <span class="tedlogo">
+              TEDxSVSU 2017
+            </span>
+            <span class="card-head-smaller" style="padding-left: 40px">
+              <a href="home.html">Home</a>  &bull;  
+              <a href="tickets.html">Tickets</a>  &bull;  
+              <a href="speakers.html">2017 Speakers</a>  &bull;  
+              <a href="contact.html">Contact</a>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box">
+      <div class="card">
+        <div class="card-head" style="background: #d81b60">
+          <p class="card-head-title">
+            Contact Us
+          </p>
+        </div><!--card-head-->
+
+        <div class="card-body">
+          <p>Subject:</p>
+          <input type="text" id="txtSubject" style="width: 100%;"/>
+          <p>Email that we can use to respond:</p>
+          <input type="text" id="txtEmail" style="width: 100%;"/>
+          <p>Body:</p>
+          <textarea id="txtBody" rows="10" style="width: 100%;"></textarea>
+          <input type="button" id="btnSubmit" value="Send"/>
+
+          <br/>
+          <p id="pConfirm"></p>
+        </div>
+      </div><!--card-->
+    </div><!--12 cols-->
+  </div>
+</body>
+
+<script>
+  document.getElementById("btnSubmit").onclick = function() {
+    function appendText(str) {
+      return function() {
+        document.getElementById("pConfirm").innerHTML += str + "<br/>";
+      };
+    }
+
+    appendText("Thank you for your message.  Our highly trained team of cats will get back to you soon!")();
+
+    document.getElementById("pConfirm").style.color = "green";
+
+    setTimeout(appendText("Well this is embarassing... The cats have eaten your message..."), 2000);
+  };
+</script>
+
+</html>

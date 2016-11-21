@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+                           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+    <link rel="stylesheet" href="cards.css"/>
+  </head>
+
+<body>
+  <div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box">
+      <div class="titlebar">
+        <div class="card-head" style="background: #F44336">
+          <p class="card-head-title">
+            <span class="tedlogo">
+              TEDxSVSU 2017
+            </span>
+            <span class="card-head-smaller" style="padding-left: 40px">
+              <a href="home.html">Home</a>  &bull;  
+              <a href="tickets.html">Tickets</a>  &bull;  
+              <a href="speakers.html">2017 Speakers</a>  &bull;  
+              <a href="contact.html">Contact</a>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 box">
+      <div class="card">
+        <div class="card-head" style="background: #ff9800">
+          <p class="card-head-title">
+            Tickets
+          </p>
+        </div>
+        <div class="card-body">
+            <p>
+              <span class="span-large">Book today to save your seat! $25 each</p>
+              <br/>
+              TEDXSVSU is back for another year!
+
+              <br/>
+              <br/>
+
+              TEDxSVSU will be held at Saginaw Valley State University in Curtis Hall and the conference will be in Banquet Rooms A &amp; B
+              located on the second floor.
+              <br/>
+              <br/>
+
+              Guests will be permitted to enter the hall at 5:00pm and will be able to immediately start looking at various exhibits.
+
+              <br/>
+              <br/>
+
+              When arriving at the event please park in the designated parking area:
+            </p>
+
+            <img src="http://tedxsvsu.weebly.com/uploads/4/3/4/8/43486399/1242217_orig.png" id="imgparking"/>
+        </div>
+        <br/>
+      </div><!--card-->
+    </div><!--12 cols-->
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 box">
+      <div class="card">
+        <div class="card-head" style="background: #66bb6a">
+          <p class="card-head-title" id="pSold">
+            Payment (0/100 Sold)
+          </p>
+        </div>
+        <div class="card-body">
+          <table>
+            <tr>
+              <td>Name</td> 
+              <td><input type="text" id="txtName"/></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><input type="text" id="txtEmail"/></td>
+            </tr>
+            <tr>
+              <td>Card #</td>
+              <td><input type="text" id="txtCard"/></td>
+            </tr>
+            <tr>
+              <td colspan=2> 
+                <input type="button" id="btnPay" value="Pay $25 Now" style="width: 100%"/>
+              </td>
+            </tr>
+          </table>
+          <p id="pPaid"></p>
+        </div>
+        <br/>
+      </div><!--card-->
+
+      <div class="card">
+        <div class="card-body">
+          <img src="https://static.wixstatic.com/media/eb972b_1f041e8b1edf49018d47a79e9b06171e.jpg/v1/crop/x_0,y_6,w_3650,h_997/fill/w_278,h_79,al_c,q_80,usm_0.66_1.00_0.01/eb972b_1f041e8b1edf49018d47a79e9b06171e.jpg"/>
+        </div><!--card-body-->
+      </div><!--card-->
+
+    </div><!--4 cols-->
+  </div><!--container-->
+</body>
+
+<script>
+  sold = 0;
+  document.getElementById("btnPay").onclick = function() {
+    if( ++sold <= 100) {
+      with(document.getElementById("pPaid")) {
+        innerHTML = "Thank you " + document.getElementById("txtName").value + ".  $25 has been charged to your card.";
+        style.color = "green";
+      }
+      document.getElementById("pSold").innerHTML = "Payment (" + sold + "/100 Sold)";
+    } else {
+      with(document.getElementById("pPaid")) {
+        innerHTML = "Sorry!  We have sold out for the year."
+        style.color = "red";
+      }
+    }
+  };
+</script>
+
+<style>
+  #imgparking {
+    padding-right: 5px;
+    width: 100%;
+  }
+</style>
+</html>

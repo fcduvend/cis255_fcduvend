@@ -1,0 +1,112 @@
+<!--
+  Frank Duvendack
+  JS Function Test
+  2016.10.12 1331
+
+  Demonstrate javascript functions
+-->
+<html>
+  <body>
+    <p id="test">Hello</p>
+    <div style="width: 50%;">
+      <input type="button" id="btnChangeTest" value="What is the date?" onClick="changeTest();"/><br/>
+      <input type="button" id="btnTestAlert" value="Show Alert" onClick="testAlert();"/>
+      <hr/>
+
+      NUM1 + NUM2 = <span id="num1num2"></span><br/>
+      <input type="text" id="txtNum1" style="width: 49%;"/>
+      <input type="text" id="txtNum2" style="width: 49%;"/>
+      <input type="button" id="btnAddNums" value="Add Nums" onClick="addNums();"/>
+      <hr/>
+
+      NAME:<br/>
+      <input type="text" id="txtName"/>
+      <input type="button" id="btnPassStuff" value="Pass Stuff" onClick="passStuff();"/>
+
+      <hr/>
+      <input type="button" id="btnClearLog" value="Clear" style="color: red;" onClick="clearFields();"/>
+    </div>
+
+    <p>LOG:</p>
+    <div id="divOut">
+      <p id="pLog"></p>
+    </div>
+  </body>
+
+  <script>
+
+    //iife to set paragraph "test" to red
+    var iifetest = (function(color) {
+      document.getElementById("test").style.color = color;
+    })("red");
+
+    //nifty passable functions
+    var hello = function(name) { return "\"Hello, " + name + "!\""; }
+    var getTextValue = function(id) { return document.getElementById(id).value }
+
+    //clears text fields and log
+    function clearFields() {
+      //value
+      document.getElementById("txtNum1").value = "";
+      document.getElementById("txtNum2").value = "";
+      document.getElementById("txtName").value = "";
+
+      //style
+      document.getElementById("num1num2").style.border = "";
+
+      //innerHTML
+      document.getElementById("num1num2").innerHTML = "";
+      document.getElementById("pLog").innerHTML = "";
+    }
+
+    //change the value of paragraph "test" to the date
+    function changeTest() {
+        document.getElementById("test").innerHTML = "It is " + new Date() + ".";
+    }
+
+    //show an alert
+    function testAlert() {
+      alert("yo");
+    }
+
+    //add 2 numbers from txtNum1 and txtNum2
+    function addNums() {
+      var num1 = document.getElementById("txtNum1").value;
+      var num2 = document.getElementById("txtNum2").value;
+      var num3 = parseInt(num1) + parseInt(num2);
+      document.getElementById("num1num2").innerHTML = num3;
+      document.getElementById("num1num2").style.border = "1px solid red";
+      appendPLog(num3);
+    }
+
+    //append line to log
+    function appendPLog(data) {
+      document.getElementById("pLog").innerHTML = data + "<br/>" + document.getElementById("pLog").innerHTML;
+    }
+
+    //test parameter passing
+    function paramTest(a, b, c, d, e, f) {
+      appendPLog(a + " " + b + " " + c + " " + d + " " + e(f("txtName"))); 
+    }
+
+    //drive paramTest
+    function passStuff() {
+      paramTest("a", 1, true, null, hello, getTextValue);
+    }
+  </script>
+
+  <style>
+    input {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    #divOut {
+      margin-top: 20px;
+      width: 50%;
+      height: 300px;
+      border: solid black 2px;
+      overflow: scroll;
+    }
+  </style>
+</html>

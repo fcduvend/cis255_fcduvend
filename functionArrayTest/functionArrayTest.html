@@ -1,0 +1,41 @@
+<!--
+  Frank Duvendack
+  2016.10.17
+  functionArrayTest
+  Create an array of functions and run them.
+-->
+
+<html>
+  <body onload="runArrFunc();">
+    <ul id="ulOut"></ul>
+  </body>
+
+  <script>
+    //create array of functions and return it
+    function getArrOfFunc() {
+      return [function add2(val) { return "add2: " + (val + 2); },
+              function subtract4(val) { return "subtract4: " + (val - 4); },
+              function mod5(val) { return "mod5: " + (val % 5); },
+              function power3(val) { return "power3: " + Math.pow(val, 3); },
+              function tostring(val) { return "tostring: " + val.toString(); }];
+    }
+
+    //run the array of functions from getArrOfFunc
+    function runArrFunc() {
+      var arrFunc = getArrOfFunc();
+
+      //process each function
+      for(var i = 0; i < arrFunc.length; i++) {
+        //append to ulOut
+        var node = document.createElement("li");
+        node.appendChild(document.createTextNode(i + ": " + arrFunc[i](i)));
+        document.getElementById("ulOut").appendChild(node);
+      }
+    }
+  </script>
+
+
+  <style>
+
+  </style>
+</html>

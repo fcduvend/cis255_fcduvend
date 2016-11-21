@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--
+  Frank Duvendack
+  container:
+    titlebar:
+      title on left
+      buttons on right
+
+    bootstrap cols:
+      top left:
+        courses taken
+      top right:
+        courses needed
+      bottom left:
+        courses available
+      bottom right:
+        courses not available
+-->
+
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+                           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--Google Roboto font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!--My cards.css-->
+    <link rel="stylesheet" href="cards.css"/>
+
+    <title>Frank Duvendack Program 3</title>
+  </head>
+
+  <body>
+
+    <div class="container box">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 box">
+        <div class="card card-head" style="background: #365268">
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <p class="card-head-title">CS/CIS Course Planner</p>
+          </div><!--bootstrap cols-->
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 card-body">
+            <button type="button" id="btnShowNeeded" class="btn btn-primary">Update</button>
+            <button type="button" id="btnClear" class="btn btn-danger" onclick="clearAll();">Clear</button>
+            <a href="http://csis.svsu.edu/~fcduvend/Frank_Duvendack_Program_3.zip">
+              <button type="button" id="btnDownload" class="btn btn-info">Download Source Files</button>
+            </a>
+          </div><!--card-body-->
+        </div><!--card card-head-->
+      </div><!--box-->
+
+      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 box">
+        <div class="card">
+          <div class="card-head" style="background: #ffc107">
+            <p class="card-head-title">Taken</p>
+          </div><!--card-head-->
+          <div class="card-body">
+            <textarea id="txtTaken" rows="10" class="txtinput"></textarea>
+          </div><!--card-body-->
+        </div><!--card-->
+
+        <div class="card">
+          <div class="card-head" style="background: #f44336">
+            <p class="card-head-title">Available (taken courses omitted)</p>
+          </div><!--card-head-->
+          <div class="card-body">
+            <textarea id="txtAvailable" rows="10" class="txtinput"></textarea>
+          </div><!--card-body-->
+        </div><!--card-->
+      </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 box">
+        <div class="card">
+          <div class="card-head" style="background: #4caf50">
+            <p class="card-head-title">Needed</p>
+          </div><!--card-head-->
+          <div class="card-body">
+            <textarea id="txtNeeded" rows="10" class="txtinput"></textarea>
+          </div><!--card-body-->
+        </div><!--card-->
+
+        <div class="card">
+          <div class="card-head" style="background: #2196f3">
+            <p class="card-head-title">Not Available</p>
+          </div><!--card-head-->
+          <div class="card-body">
+            <textarea id="txtNotAvailable" rows="10" class="txtinput"></textarea>
+          </div><!--card-body-->
+        </div><!--card-->
+      </div>
+    </div>
+
+    <script>
+
+var arrMASTER = new Array();
+
+//list of needed courses
+var arrNeededCourses = new Array();
+
+//list of courses available
+var arrAvailableCourses = new Array();
+
+//list of courses not available
+var arrNotAvailableCourses = new Array();
+
+//clear all textareas
+function clearAll() {
+  document.getElementById("txtTaken").value = "";
+  document.getElementById("txtNeeded").value = "";
+  document.getElementById("txtAvailable").value = "";
+  document.getElementById("txtNotAvailable").value = "";
+}
+
+//query svsu api for all CS and CIS courses and store in arrMASTER
+function populateMaster() {
+  arrMASTER = new Array();
+
+  var xmlhttp = new XMLHttpRequest();
+  var urls = ["https://api.svsu.edu/courses?prefix=CS", "https://api.svsu.edu/courses?prefix=CIS"];
+
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      var arr = JSON.parse(xmlhttp.responseText);
+      for(var i = 0; i < arr.courses.length; i++)
+        arrMASTER.push(arr.courses[i]);
+    }
+  };
+
+  //get both CS and CIS
+  urls.forEach(function(url) {
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();
+  });
+}
+
+//join an array with newlines and store in a textarea
+function showArr(where, arr) {
+  document.getElementById(where).value = arr.join('\n');
+}
+
+//remove elements from arr1 that are in arr2
+function subtractArr(arr1, arr2) {
+  arr3 = new Array();
+  arr1.forEach(function(a) {
+    if(!arr2.includes(a))
+      arr3.push(a);
+  });
+  return arr3;
+}
+
+//btnShowNeeded
+//refresh arrays and display new data
+document.getElementById("btnShowNeeded").onclick = function() {
+  populateMaster();
+
+  //list of needed courses
+  arrNeededCourses = new Array();
+
+  //list of courses available
+  arrAvailableCourses = new Array();
+
+  //list of courses not available
+  arrNotAvailableCourses = new Array();
+
+  //get taken courses from user
+  var arrTaken = document.getElementById("txtTaken").value.split('\n');
+
+  //make sure arrMASTER has data
+  if(arrMASTER.length > 0) {
+
+    //populate arrNeededCourses and arrAvailableCourses
+    arrMASTER.forEach(function(a) {
+      var newNeeded = a.prefix + a.courseNumber;
+
+      //skip if course has already been taken
+      if(!arrTaken.includes(newNeeded)){
+
+        //push into arrays ignoring duplicates
+        if(!arrNeededCourses.includes(newNeeded)) arrNeededCourses.push(newNeeded);
+        if(!arrAvailableCourses.includes(newNeeded) && a.status == "Open") arrAvailableCourses.push(newNeeded);
+      }
+    });
+
+    //populate arrNotAvailableCourses
+    arrNotAvailableCourses = subtractArr(arrNeededCourses, arrAvailableCourses);
+
+    //display arrays
+    showArr("txtNeeded", arrNeededCourses);
+    showArr("txtAvailable", arrAvailableCourses);
+    showArr("txtNotAvailable", arrNotAvailableCourses);
+  }
+};
+    </script>
+
+  </body>
+
+  <style>
+    .container {
+      width: 100%;
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px;
+    }
+
+    .txtinput {
+      width: 100%;
+    }
+  </style>
+</html>

@@ -1,0 +1,86 @@
+<!--
+  Frank Duvendack
+  jsonsort.html
+
+  2016.10.31
+
+  Create an object of courses and sort them either on coursenum or prefix
+-->
+
+<html>
+  <body>
+    <p id="pLog"></p>
+  </body>
+
+
+  <script>
+
+function log(arr) {
+  with(document.getElementById("pLog")) {
+    for(var i = 0; i < arr.length; i++) {
+      innerHTML += arr[i][0] + " " + arr[i][1] + "<br/>";
+    }
+    innerHTML += "<hr/>";
+  }
+}
+
+function jsonTo2dArr(json) {
+  var arr = [];
+  for(var i = 0; i < json[0].courses.length; i++)
+    arr[i] = [json[0].courses[i].prefix, json[0].courses[i].coursenum];
+
+  return arr;
+}
+
+//sort on either prefix or coursenum given index
+function sortIndex(arr, index) {
+  for(var i = 0; i < arr.length; i++) {
+    for(var j = i; j < arr.length; j++) {
+      if(arr[j][index] < arr[i][index]) {
+        var temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+//create courses
+var json = 
+[{
+  "courses" : [
+    {"prefix" : "cs" , "coursenum" : "102"},
+    {"prefix" : "cs" , "coursenum" : "101"},
+    {"prefix" : "cs" , "coursenum" : "100"},
+    {"prefix" : "cis" , "coursenum" : "105"},
+    {"prefix" : "cis" , "coursenum" : "102"},
+    {"prefix" : "cis" , "coursenum" : "200"},
+    {"prefix" : "math" , "coursenum" : "100"},
+    {"prefix" : "math" , "coursenum" : "300"},
+    {"prefix" : "math" , "coursenum" : "200"},
+    {"prefix" : "phil" , "coursenum" : "200"},
+    {"prefix" : "phil" , "coursenum" : "250"},
+    {"prefix" : "phil" , "coursenum" : "400"}
+  ]
+}];
+
+var arr = jsonTo2dArr(json);
+log(arr);
+
+//sort on prefix
+arr = sortIndex(arr, 0);
+log(arr);
+
+//sort on coursenum
+arr = sortIndex(arr, 1);
+log(arr);
+console.log(arr);
+
+  </script>
+
+
+  <style>
+
+  </style>
+</html>

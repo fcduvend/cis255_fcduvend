@@ -1,0 +1,31 @@
+<html>
+  <script>
+    function run() {
+      var retval = "HELLO x 10<br/>";
+
+      for(var i = 0; i < 10; i++)
+        retval += i + " hello<br/>";
+
+      retval += "<hr/>1234567890 sum</br>";
+
+
+
+      retval += "<hr/>aoeuidhtns 1 char/ line<br/>";
+
+      var str = "aoeuidhtns";
+      i = 0;
+      do {
+        retval += str[i].toUpperCase() + "<br/>";
+        i++;
+      } while (i < str.length);
+
+      retval += "</hr>";
+
+      document.getElementById("log").innerHTML = retval;
+    }
+  </script>
+
+  <body onLoad="run();">
+    <p id="log"></p>
+  </body>
+</html>

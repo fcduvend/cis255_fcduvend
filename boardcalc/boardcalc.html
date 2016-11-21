@@ -1,0 +1,85 @@
+<!--
+  Frank Duvendack
+  2016.11.09
+  Board Calculator
+
+  Calculate the number of boards the user needs as well as the number of boards the user needs to buy to build a deck of a specified size
+  given the dimensions of the deck and the dimensions of the board.
+
+-->
+
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>Board Calculator</title>
+  </head>
+
+
+  <body>
+    <form>
+      <p>Board length:</p>
+      <input type="text" id="txtBoardLength"/>
+
+      <br/>
+
+      <p>Board width:</p>
+      <input type="text" id="txtBoardWidth"/>
+
+      <br/>
+
+      <p>Deck length:</p>
+      <input type="text" id="txtDeckLength"/>
+
+      <br/>
+
+      <p>Deck width:</p>
+      <input type="text" id="txtDeckWidth"/>
+    </form>
+
+    <p id="pOut"></p>
+
+    <br/>
+
+    <input type="button" id="btnClear" value="Clear"/>
+  </body>
+
+
+  <script>
+  $(document).ready(function() {
+    
+    //recalculate every keyup
+    $("input").on("keyup", function() {
+
+      //get data from form
+      var bL = parseFloat($("#txtBoardLength").val());
+      var bW = parseFloat($("#txtBoardWidth").val());
+      var dL = parseFloat($("#txtDeckLength").val());
+      var dW = parseFloat($("#txtDeckWidth").val());
+
+      //make sure everything is greater than 0 (wouldn't want to divide by 0)
+      if(bL > 0 && bW > 0 && dL > 0 && dW > 0) {
+
+        //calculate areas and # boards
+        var deckArea = dL * dW;
+        var boardArea = bL * bW;
+        var boards = deckArea / boardArea;
+
+        //display # boards used and # boards needed
+        $("#pOut").html("You will need " + boards + " board" + (boards != 1 ? "s" : "") + ".<br/>" +
+            "You will need to buy " + Math.ceil(boards) + " board" + (boards != 1 ? "s" : "") + ".");
+      }
+    });
+
+    //clear form and output
+    $("#btnClear").click(function() {
+      $("form input").val("");
+      $("#pOut").text("");
+    });
+  });
+  </script>
+
+
+  <style>
+
+  </style>
+</html>
