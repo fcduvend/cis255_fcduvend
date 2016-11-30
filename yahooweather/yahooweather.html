@@ -1,0 +1,58 @@
+<!--
+  Frank Duvendack
+
+-->
+
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>Yahoo Weather Test</title>
+
+    <script src="weather.js"></script>
+    <style type="text/css">
+      #found { display: none; } 
+      #error { color: red; display: none; }
+    </style>
+  </head>
+
+
+  <body>
+
+    <form>
+      <input type="radio" name="radtemp" class="radtemp" id="radCel" checked="checked">Celsius</input>
+      <input type="radio" name="radtemp" class="radtemp" id="radFah">Fahrenheit</input>
+    </form>
+
+    <div id="find">
+      <div class="form-group">
+        <input type="edit" placeholder="Location" id="loc">
+        <button class="btn btn-default" onclick="getWeather();">Find</button>
+      </div>
+    </div>
+
+    <div id="found">
+      <p>
+        <span id="location"></span>
+      </p>
+      <p>
+        <span id="cond"></span> &amp; 
+        <span id="temp"></span>&deg;
+        <span id="unit"></span>
+      </p>
+      <small><em><a href="javascript:showSearch();">&larr;change location</a></em></small>
+    </div>
+
+    <div id="error">
+    <p>Location not found</p>
+    </div>
+  </body>
+
+  <script>
+
+  </script>
+
+
+  <style>
+
+  </style>
+</html>
