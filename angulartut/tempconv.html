@@ -1,0 +1,49 @@
+<!--
+  Frank Duvendack
+  tempconv.html
+  Temperature Converter
+  2016.12.05
+
+  Converts between Fahrenheit and Celcius using Angular.js
+-->
+
+<html ng-app="tempconv" ng-init="tempC: 0, tempF: 0">
+  <head>
+    <title>Angular Temperature Converter</title>
+  </head>
+
+  <body>
+    <div ng-controller="ctrlTempConv">
+      <h1>Temperature Converter</h1>
+      <table>
+        <tr>
+          <td>
+            <input type="text" ng-model="inFah"/>
+            &deg;F
+          </td>
+          <td>
+            == {{tempC}}&deg;C
+          </td>
+          <td>
+            <button ng-click="calcCel();">Calculate C</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" ng-model="inCel"/>
+            &deg;C
+          </td>
+          <td>
+            == {{tempF}}&deg;F
+          </td>
+          <td>
+            <button ng-click="calcFah();">Calculate F</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/tempconv.js"></script>
+  </body>
+</html>
