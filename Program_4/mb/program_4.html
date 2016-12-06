@@ -172,7 +172,7 @@
         </h1>
       </div>
 
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <!--FCDUVEND START-->
@@ -181,24 +181,23 @@
           </div>
           <div class="panel-body">
             <!--FCDUVEND START-->
-            <div id="chartContainer" style="width:100%; height:400px;">
+            <div id="chartContainer" style="width:100%; height:500px;">
             </div>
             <!--FCDUVEND END-->
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4><i class="fa fa-fw fa-gift"></i> Chart.js</h4>
           </div>
           <div class="panel-body">
-            <canvas id="myChart" style="width: 100%; height: 100%"></canvas>
-            <a href="#" class="btn btn-default">Learn More</a>
+            <canvas id="myChart" width="100%" height="64"></canvas>
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4><i class="fa fa-fw fa-compass"></i> Yahoo Weather</h4>
@@ -413,7 +412,6 @@
               series: [
                   { dataField: 'avg', displayText: 'Average Temperature', opacity: 1, lineWidth: 2 }
               ]
-                
             }
           ]
       };
@@ -435,21 +433,27 @@
             labels: ["Clinton", "Trump", "Stein", "Johnson"],
             datasets: [{
                 label: '# of Votes',
-                data: [10, 8.3, 1.2, 4],
+                data: [65, 62, 1.2, 4],
                 backgroundColor: [
                     'rgba(0, 0, 255, 0.2)',
                     'rgba(255, 0, 0, 0.2)',
                     'rgba(0, 255, 0, 0.2)',
-                    'rgba(255, 255, 0, 0.2)',
+                    'rgba(255, 255, 0, 0.2)'
                 ],
                 borderColor: [
                     'rgba(0, 0, 255, 1)',
                     'rgba(255, 0, 0,1)',
                     'rgba(0, 255, 0, 1)',
-                    'rgba(255, 255, 0, 1)',
+                    'rgba(255, 255, 0, 1)'
                 ],
                 borderWidth: 1
             }]
+          },
+        options: {
+          title: {
+            display: true,
+            text: 'Popular Vote Election Results (millions)'
+          }
         }
       });
     //CHART JS END
