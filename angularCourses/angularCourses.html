@@ -1,0 +1,36 @@
+<!--
+  Frank Duvendack
+  angularCourses.html
+  Angular Course Lookup
+  2016.12.07
+
+  Access svsu courses api and get courses with specified prefix and courseNumber and get course description and # credits
+-->
+
+<html ng-app="appGetCourse" ng-init="inPrefix = '', inCourseNumber = ''">
+  <head>
+    <title>Angular Course Lookup</title>
+  </head>
+
+  <body>
+    <div ng-controller="ctrlGetCourse">
+      <h1>Angular Course Lookup</h1>
+
+      <!--user inputs-->
+      <input type="text" ng-model="inPrefix" class="userinputs" id="txtPrefix"/>
+      <input type="text" ng-model="inCourseNumber" class="userinputs"/>
+      <button ng-click="getCourses();">Get Course {{inPrefix + inCourseNumber}}</button>
+
+      <!--log all courses retrieved-->
+      <div id="coursesLog"></div>
+    </div>
+
+    <!--add Angular, jQuery, angularCourses.js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="angularCourses.js"></script>
+
+    <!--link angularCourses stylesheet-->
+    <link rel="stylesheet" href="angularCourses.css">
+  </body>
+</html>
